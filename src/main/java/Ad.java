@@ -1,21 +1,18 @@
-
 public class Ad {
     private long id;
-    private long user_id;
+    private long userId;
     private String title;
     private String description;
 
-    // select statement
-    public Ad(long id, long user_id, String title, String description){
+    public Ad(long id, long userId, String title, String description) {
         this.id = id;
-        this.user_id = user_id;
+        this.userId = userId;
         this.title = title;
         this.description = description;
     }
 
-    // insert statement
-    public Ad(long user_id, String title, String description){
-        this.user_id = user_id;
+    public Ad(long userId, String title, String description) {
+        this.userId = userId;
         this.title = title;
         this.description = description;
     }
@@ -28,12 +25,12 @@ public class Ad {
         this.id = id;
     }
 
-    public long getUser_id() {
-        return user_id;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public String getTitle() {
