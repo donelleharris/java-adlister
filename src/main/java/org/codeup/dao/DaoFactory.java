@@ -1,3 +1,5 @@
+package org.codeup.dao;
+
 public class DaoFactory {
     public static Ads adsDao;
 

@@ -1,3 +1,7 @@
+package org.codeup.dao;
+
+import org.codeup.models.Ad;
+
 import java.util.List;
 
 public interface Ads {
