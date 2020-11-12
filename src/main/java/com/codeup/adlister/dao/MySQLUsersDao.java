@@ -1,7 +1,6 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.User;
-import com.codeup.adlister.dao.Config;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
@@ -10,6 +9,27 @@ import java.util.List;
 
 public class MySQLUsersDao implements Users{
     private Connection connection = null;
+
+    public boolean validate(User user) throws ClassNotFoundException, SQLException {
+        boolean status = false;
+        Class.forName("com.mysql.jdbc.Driver");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/adlister_db?serverTimezone=UTC&useSSL=false", "root", "codeup")) {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("select * from users where username = ? and password = ? ");
+            {
+                preparedStatement.setString(1, user.getUsername());
+                preparedStatement.setString(2, user.getPassword());
+
+                System.out.println(preparedStatement);
+                ResultSet rs = preparedStatement.executeQuery();
+                status = rs.next();
+
+            }
+        }catch (SQLException e) {
+                throw new RuntimeException("Error creating a new ad.", e);
+            }
+            return status;
+        }
 
     public MySQLUsersDao(Config config) {
         try {
